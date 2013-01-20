@@ -40,14 +40,15 @@ CKEDITOR.plugins.add( 'whitelist',
 					var whitelistAttributes = config.whitelist_elements[ element.name ].attributes || {};
 					for( var att in element.attributes )
 					{
+						var attName=att;
 						// Some attributes like href or src are handled by CKEditor in a different way to avoid problems with the browsers
-						if ( att.substr(0,15) == "data-cke-saved" )
-							att = substr( 15 );
+						if ( att.substr(0, 14) == "data-cke-saved" )
+							att = att.substr( 15 );
 
 						if (!( att in config.whitelist_globalAttributes) && !(att in whitelistAttributes))
 						{
 							// console.log("remove attribute: " + att);
-							delete element.attributes[att];
+							delete element.attributes[ attName ];
 						}
 					}
 				}
